@@ -4,8 +4,12 @@ function playMusic() {
     music.play();
   }
   window.addEventListener('DOMContentLoaded', function() {
-    playMusic();
-  });
+    var audio = new Audio('Ed_Sheeran_-_Shape_of_You_Offblogmedia.com.mp3');
+    audio.loop = true;
+    audio.autoplay = true;
+    audio.play();
+    audio.volume = 0.5; // Sets volume to 50%
+});
   document.body.addEventListener('click', playMusic, { once: true });
   const content = document.getElementById('content');
   const footer = document.getElementsByTagName('footer')[0];
@@ -35,63 +39,62 @@ function playMusic() {
     }, second)
   
   const _slideSatu = function () {
-    const tap = document.getElementById('tap');
-    const slideSatu = document.getElementById('slideSatu');
-    slideSatu.classList.remove('d-none');
+  const tap = document.getElementById('tap');
+  const slideSatu = document.getElementById('slideSatu');
+  slideSatu.classList.remove('d-none');
+
+  // after 7 sec → show tap then auto move to slideDua
+  setTimeout(function () {
+    tap.classList.remove('d-none');
+    _slideDua();
+  }, 4000);
+};
+
+const _slideDua = function () {
+  const slideSatu = document.getElementById('slideSatu');
+  const tap = document.getElementById('tap');
+  const slideDua = document.getElementById('slideDua');
+
+  setTimeout(function () {
+    slideSatu.classList.replace('animate__slideInDown', 'animate__backOutDown');
+    tap.classList.add('d-none');
     setTimeout(function () {
-      tap.classList.remove('d-none');
-      document.body.addEventListener('click', function () {
-        _slideDua();
-      })
-    }, 7000);
-  };
-  
-  const _slideDua = function () {
-    const slideSatu = document.getElementById('slideSatu');
-    const tap = document.getElementById('tap');
-    const slideDua = document.getElementById('slideDua');
-  
-    setTimeout(function () {
-      slideSatu.classList.replace('animate__slideInDown', 'animate__backOutDown');
-      tap.classList.add('d-none');
-      setTimeout(function () {
-        slideSatu.classList.add('d-none');
-      }, 1000);
+      slideSatu.classList.add('d-none');
     }, 1000);
-  
-    slideDua.classList.remove('d-none');
+  }, 1000);
+
+  slideDua.classList.remove('d-none');
+
+  // after 40 sec → auto go to slideTiga
+  setTimeout(function () {
+    slideDua.classList.replace('animate__zoomInDown', 'animate__fadeOutLeft');
+    slideDua.classList.remove('animate__delay-2s', 'animate__slow');
+    tap.classList.add('d-none');
     setTimeout(function () {
-      tap.classList.remove('d-none');
-      document.body.addEventListener('click', function () {
-        slideDua.classList.replace('animate__zoomInDown', 'animate__fadeOutLeft');
-        slideDua.classList.remove('animate__delay-2s', 'animate__slow');
-        tap.classList.add('d-none');
-        setTimeout(function () {
-          slideDua.remove();
-          _slideTiga();
-        }, 1000);
-      })
-    }, 40000);
-  };
-  
-  const _slideTiga = function () {
-    const tap = document.getElementById('tap');
-    const slideTiga = document.getElementById('slideTiga');
-  
-    slideTiga.classList.remove('d-none');
+      slideDua.remove();
+      _slideTiga();
+    }, 1000);
+  }, 40000);
+};
+
+const _slideTiga = function () {
+  const tap = document.getElementById('tap');
+  const slideTiga = document.getElementById('slideTiga');
+
+  slideTiga.classList.remove('d-none');
+
+  // after 41 sec → auto go to slideEmpat
+  setTimeout(function () {
+    slideTiga.classList.remove('animate__delay-1s', 'animate__slow');
+    slideTiga.classList.replace('animate__fadeInRight', 'animate__fadeOut');
+    tap.remove();
     setTimeout(function () {
-      tap.classList.remove('d-none');
-      document.body.addEventListener('click', function () {
-        slideTiga.classList.remove('animate__delay-2s', 'animate__slow');
-        slideTiga.classList.replace('animate__fadeInRight', 'animate__fadeOut');
-        tap.remove();
-        setTimeout(function () {
-          slideTiga.remove();
-          _slideEmpat();
-        }, 1000);
-      })
-    }, 43000);
-  }
+      slideTiga.remove();
+      _slideEmpat();
+    }, 100);
+  }, 20000);
+};
+
   
   function getRandomPosition(element) {
     var x = document.body.offsetHeight - element.clientHeight;
@@ -160,25 +163,25 @@ function playMusic() {
 "and moments as bright as your smile.\n\n" +
 "You deserve a year where dreams unfold gently, and maybe... just maybe,\n" +
 
-"I get to see that smile a little more this year 😉.\n\n" +
-"Here’s to memories waiting to be made, joys waiting to be found,\n" +
-"and a day as beautiful as you are."
-],
-    startDelay: 4000,
-    speed: 80,
+  "I get to see that smile a little more this year 😉 On this day, I just want you to know how much you mean to me"],
+
+
+
+    startDelay: 3500,
+    speed: 70,
     waitUntilVisible: true
   }).go();
   
   new TypeIt("#teks2", {
     strings: ["With or without me, I hope the universe always makes you happy. Happy Birthday! You’re amazing, and I hope this year brings you lots of smiles… maybe even some shared with me 😉. Wishing you all the best today and always."],
     startDelay: 2000,
-    speed: 75,
+    speed: 70,
     waitUntilVisible: true
   }).go();
   
   
   new TypeIt("#trims", {
-    strings: ["THANKYOU"],
+    strings: ["THANK YOU  😘    ."],
     startDelay: 2000,
     speed: 150,
     loop: false,
@@ -211,7 +214,7 @@ function playMusic() {
     }, runFor);
   
     // Settings
-    var konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65],
+    var konami = [38, 40, 45, 37, 39, 37, 39, 66, 65],
       pointer = 0;
   
     var particles = 150,
