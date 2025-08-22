@@ -157,7 +157,7 @@ const _slideTiga = function () {
   
   
   new TypeIt("#teks1", {
-    strings: [ "Happy Birthday, Poonam Choudhary!\n\n" +
+    strings: [ "Happy Birthday, Poonam Choudhary! (pinti😉)\n\n" +
 "On this special day, I wish you a year filled with joy and laughter.\n" +
 "May today bring you laughter that echoes, little surprises that make your heart skip,\n" +
 "and moments as bright as your smile.\n\n" +
@@ -183,7 +183,7 @@ const _slideTiga = function () {
   new TypeIt("#trims", {
     strings: ["THANK YOU  😘    ."],
     startDelay: 2000,
-    speed: 150,
+    speed: 160,
     loop: false,
     waitUntilVisible: true,
   }).go();
@@ -214,7 +214,7 @@ const _slideTiga = function () {
     }, runFor);
   
     // Settings
-    var konami = [38, 40, 45, 37, 39, 37, 39, 66, 65],
+    var konami = [35, 40, 45, 37, 39, 37, 39, 66, 65],
       pointer = 0;
   
     var particles = 150,
@@ -458,3 +458,4 @@ const _slideTiga = function () {
   
     if (!onlyOnKonami) poof();
   };
+
