@@ -116,6 +116,19 @@ const _slideTiga = function () {
     });
   
     btn[1].addEventListener('click', function () {
+        // YES acts like NO for first 2 presses
+      if (!btn[1].pressCount) btn[1].pressCount = 1;
+      else btn[1].pressCount++;
+      if (btn[1].pressCount < 3) {
+        // Move slide randomly (like NO)
+        var xy = getRandomPosition(slideEmpat);
+        slideEmpat.style.top = xy[0] + 'px';
+        // slideEmpat.style.left = xy[1] + 'px';
+        btn[1].innerText = `YES!! (${btn[1].pressCount})`;
+        return;
+      }
+      // On 3rd press, act as YES
+      btn[1].innerText = 'YES!!';
       slideEmpat.classList.replace('animate__fadeInDown', 'animate__bounceOut');
       slideEmpat.classList.remove('animate__delay-2s');
       setTimeout(function () {
@@ -458,4 +471,5 @@ const _slideTiga = function () {
   
     if (!onlyOnKonami) poof();
   };
+
 
