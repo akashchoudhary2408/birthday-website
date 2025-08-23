@@ -74,7 +74,7 @@ const _slideDua = function () {
       slideDua.remove();
       _slideTiga();
     }, 1000);
-  }, 32000);
+  }, 35000);
 };
 
 const _slideTiga = function () {
@@ -500,4 +500,5 @@ const _slideTiga = function () {
   
     if (!onlyOnKonami) poof();
   };
+
 
