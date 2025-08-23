@@ -74,7 +74,7 @@ const _slideDua = function () {
       slideDua.remove();
       _slideTiga();
     }, 1000);
-  }, 33000);
+  }, 32000);
 };
 
 const _slideTiga = function () {
@@ -99,7 +99,7 @@ const _slideTiga = function () {
   function getRandomPosition(element) {
     var x = document.body.offsetHeight - element.clientHeight;
     var y = document.body.offsetWidth - element.clientWidth;
-    var randomX = Math.floor(Math.random() * 500);
+    var randomX = Math.floor(Math.random() * x);
     var randomY = Math.floor(Math.random() * y);
     return [randomX, randomY];
   };
@@ -109,7 +109,6 @@ const _slideTiga = function () {
     const btn = document.getElementsByTagName('button');
     slideEmpat.classList.remove('d-none');
   
- 
     // Custom message sequence logic
     let noCount = 0;
     let yesCount = 0;
@@ -169,15 +168,44 @@ const _slideTiga = function () {
     });
   };
   
+  const _slideLima = function () {
+    const slideLima = document.getElementById('slideLima');
+    slideLima.classList.remove('d-none');
+    const trims = document.getElementById('trims');
+  
+    setTimeout(() => {
+      trims.classList.remove('d-none');
+    }, 1000);
+  
+    slideLima.addEventListener('animationend', () => {
+      slideLima.classList.add('animate__delay-3s')
+      slideLima.classList.replace('animate__bounceIn', 'animate__fadeOut');
+      trims.classList.add('animate__animated', 'animate__fadeOut', 'animate__delay-3s');
+      setTimeout(() => {
+        trims.remove();
+        setTimeout(() => {
+          slideLima.remove();
+          _slideEnam();
+        }, 1000);
+      }, 7000);
+    });
+  };
+  
+  const _slideEnam = function () {
+    const slideEnam = document.getElementById('slideEnam');
+    slideEnam.classList.remove('d-none');
+  };
+  
   
   new TypeIt("#teks1", {
-    strings: [ "Happy Birthday, Poonam Choudhary! (pinti😉)\n\n" +
+    strings: [ "Happy Birthday,\n\n" +
 "On this special day, I wish you a year filled with joy and laughter.\n" +
 "May today bring you laughter that echoes, little surprises that make your heart skip,\n" +
 "and moments as bright as your smile.\n\n" +
 "You deserve a year where dreams unfold gently, and maybe... just maybe,\n" +
 
-  "I get to see that smile a little more this year 😉 On this day, I just want you to know how much you mean to me"],
+  "I get to see that smile a little more this year 😉 On this day, I just want you to know how much you mean to me."
+],
 
 
 
@@ -197,7 +225,7 @@ const _slideTiga = function () {
   new TypeIt("#trims", {
     strings: ["THANK YOU  😘    ."],
     startDelay: 2000,
-    speed: 160,
+    speed: 130,
     loop: false,
     waitUntilVisible: true,
   }).go();
@@ -228,7 +256,7 @@ const _slideTiga = function () {
     }, runFor);
   
     // Settings
-    var konami = [35, 40, 45, 37, 39, 37, 39, 66, 65],
+    var konami = [38, 45, 36, 37, 39, 37, 39, 66, 65],
       pointer = 0;
   
     var particles = 150,
@@ -472,7 +500,3 @@ const _slideTiga = function () {
   
     if (!onlyOnKonami) poof();
   };
-
-
-
-
