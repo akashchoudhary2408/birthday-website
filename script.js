@@ -198,13 +198,13 @@ const _slideTiga = function () {
   
   
   new TypeIt("#teks1", {
-    strings: [ "Happy Birthday,\n\n" +
+    strings: [ "Happy Birthday, Poonam Choudhary! (pinti😉)\n\n" +
 "On this special day, I wish you a year filled with joy and laughter.\n" +
 "May today bring you laughter that echoes, little surprises that make your heart skip,\n" +
 "and moments as bright as your smile.\n\n" +
 "You deserve a year where dreams unfold gently, and maybe... just maybe,\n" +
 
-  "I get to see that smile a little more this year 😉 On this day, I just want you to know how much you mean to me."
+  "I get to see that smile a little more this year 😉 On this day, I just want you to know how much you mean to me"
 ],
 
 
@@ -500,3 +500,4 @@ const _slideTiga = function () {
   
     if (!onlyOnKonami) poof();
   };
+
