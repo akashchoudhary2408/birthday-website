@@ -109,63 +109,64 @@ const _slideTiga = function () {
     const btn = document.getElementsByTagName('button');
     slideEmpat.classList.remove('d-none');
   
+ 
+    // Custom message sequence logic
+    let noCount = 0;
+    let yesCount = 0;
+    const messageBox = document.createElement('div');
+    messageBox.id = 'empat-message';
+    messageBox.style.marginTop = '10px';
+    messageBox.style.textAlign = 'center';
+    messageBox.style.fontWeight = 'bold';
+    messageBox.style.color = '#007bff';
+    slideEmpat.appendChild(messageBox);
+
+    function setMessage(msg) {
+      messageBox.innerText = msg;
+    }
+
     btn[0].addEventListener('click', function () {
-      var xy = getRandomPosition(slideEmpat);
-      slideEmpat.style.top = xy[0] + 'px';
-      // slideEmpat.style.left = xy[1] + 'px';
+      noCount++;
+      if (noCount === 1) {
+        setMessage('you didnt like this ?');
+      } else if (noCount === 2) {
+        setMessage('Please please say yes');
+      }
     });
-  
+
     btn[1].addEventListener('click', function () {
-        // YES acts like NO for first 2 presses
-      if (!btn[1].pressCount) btn[1].pressCount = 1;
-      else btn[1].pressCount++;
-      if (btn[1].pressCount < 3) {
-        // Move slide randomly (like NO)
-        var xy = getRandomPosition(slideEmpat);
-        slideEmpat.style.top = xy[0] + 'px';
-        // slideEmpat.style.left = xy[1] + 'px';
-        btn[1].innerText = `YES!! (${btn[1].pressCount})`;
+      yesCount++;
+      if (noCount < 2) {
+        // If NO not pressed 3 times, YES acts like NO
+        noCount++;
+         {
+         
+        } if (noCount === 1) {
+          setMessage('you didnt like this ?');
+        } else if (noCount === 2) {
+          setMessage('Please please say yes');
+        }
         return;
       }
-      // On 3rd press, act as YES
-      btn[1].innerText = 'YES!!';
-      slideEmpat.classList.replace('animate__fadeInDown', 'animate__bounceOut');
-      slideEmpat.classList.remove('animate__delay-2s');
-      setTimeout(function () {
-        slideEmpat.remove()
-        setTimeout(() => {
-          _slideLima();
-        }, 500);
-      }, 1000);
-    })
-  };
-  
-  const _slideLima = function () {
-    const slideLima = document.getElementById('slideLima');
-    slideLima.classList.remove('d-none');
-    const trims = document.getElementById('trims');
-  
-    setTimeout(() => {
-      trims.classList.remove('d-none');
-    }, 1000);
-  
-    slideLima.addEventListener('animationend', () => {
-      slideLima.classList.add('animate__delay-3s')
-      slideLima.classList.replace('animate__bounceIn', 'animate__fadeOut');
-      trims.classList.add('animate__animated', 'animate__fadeOut', 'animate__delay-3s');
-      setTimeout(() => {
-        trims.remove();
-        setTimeout(() => {
-          slideLima.remove();
-          _slideEnam();
-        }, 1000);
-      }, 6000);
+      if (yesCount === 1) {
+        setMessage("Don't lie, you didn't like it... or did you?");
+        return;
+      }
+      if (yesCount === 2) {
+        setMessage("Hey, don't you remember he ignored you for how many days? You still say you like it?");
+        // After this, allow slide to change
+        setTimeout(function () {
+          slideEmpat.classList.replace('animate__fadeInDown', 'animate__bounceOut');
+          slideEmpat.classList.remove('animate__delay-2s');
+          setTimeout(function () {
+            slideEmpat.remove()
+            setTimeout(() => {
+              _slideLima();
+            }, 500);
+          }, 1000);
+        }, 3000); // Increased delay to 5 seconds for better readability
+      }
     });
-  };
-  
-  const _slideEnam = function () {
-    const slideEnam = document.getElementById('slideEnam');
-    slideEnam.classList.remove('d-none');
   };
   
   
@@ -471,6 +472,7 @@ const _slideTiga = function () {
   
     if (!onlyOnKonami) poof();
   };
+
 
 
 
